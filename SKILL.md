@@ -1,7 +1,7 @@
 ---
 name: mcp-server-development
 description: "Use when developing a new MCP server from scratch, upgrading an existing MCP server, performing a quality audit, or pairing a skill with its MCP. Complete operational reference for the MCP God Agent Development Bible (v19.1.5) — Ten Inviolable Laws, Pairing Contract (12 sections), 10 active Operational Guardrails, 9-Phase Upgrade Playbook with mandatory Phase 1.5 Upstream Capability Sync, Gold Stack pins, 4-Tier v3.1 Architecture, MCP 2025-11-25 spec-compliance (Check 12). Reference pilot: Fivetran (SIGNED, production). Pair-specific artifacts live in each pair's own repo under docs/, not in the Bible."
-version: 3.2.1
+version: 3.2.2
 ---
 
 # MCP Server Development — Bible v19.1.5 Framework
@@ -499,7 +499,7 @@ If Phase 9 rollback triggers (any regression within 24h):
 | 9 | Staging canary clean | Tier 1 = N/A; Tier 2+ = MUST |
 | 10 | Drift detection invocable (event-driven) | Bible `09 Check 10` |
 | 11 | Session-close intelligence captured | pilot-learnings.md in pair repo |
-| **12** | **MCP 2025-11-25 spec-compliance** (5 subchecks) | Bible `09 Check 12` |
+| **12** | **MCP 2025-11-25 spec-compliance** (5 subchecks + 12.3.1 R24 runtime lint) | Bible `09 Check 12` + `09 Check 12.3.1` |
 
 ### Check 12 subchecks
 
@@ -508,6 +508,7 @@ If Phase 9 rollback triggers (any regression within 24h):
 | 12.1 | `outputSchema` on every data-returning tool | `tools/list` — every entry has non-empty outputSchema OR exempt with adoption plan |
 | 12.2 | ToolAnnotations — title + 4 hints populated | grep tools/list JSON |
 | 12.3 | Task annotations on long-running tools | grep `@mcp.tool(` for rubric matches |
+| **12.3.1** | **R24 runtime lint** — when `settings.docket.url == "memory://"`, `await mcp.get_tasks()` MUST return `[]` (Bible `09 Check 12.3.1`, v19.1.5, no exemption) | Python snippet in Bible `09`; runs inside pair container |
 | 12.4 | Elicitation `.register(mcp)` if applicable | `grep -E 'elicitation.*\.register\(mcp\)' src/server.py` |
 | 12.5 | `MCP-Protocol-Version: 2025-11-25` accepted + advertised | curl initialize handshake |
 

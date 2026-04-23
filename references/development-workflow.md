@@ -1,8 +1,8 @@
-> ⚠️ **SUPERSEDED BY v19.1.1** — 2026-04-22. This file is v18.1-era content retained for historical reference. The authoritative v19.1.1 Bible at `https://github.com/ARJ999/MCP-God-Agent-Development-Bible` (branch `v19.0`) takes precedence on every rule below. Mapping:
-> - Laws + architecture → `v19.0/00_PHILOSOPHY.md` + `01_INVIOLABLE_LAWS.md` + `02_ARCHITECTURE.md`
-> - Server/skill/tool standards → `v19.0/03_MCP_SERVER_STANDARD.md` + `04_SKILL_STANDARD.md` + `05_TOOL_STANDARD.md`
-> - Pairing Contract + 11 Guardrails → `v19.0/07_PAIRING_CONTRACT.md`
-> - Upgrade Playbook (9 phases + Phase 1.5) → `v19.0/08_UPGRADE_PLAYBOOK.md`
+> ⚠️ **SUPERSEDED BY v19.1.5** — 2026-04-23. This file is v18.1-era content retained for historical reference. The authoritative v19.1.5 Bible at `https://github.com/ARJ999/MCP-God-Agent-Development-Bible` (branch `main`, flat layout) takes precedence on every rule below. Mapping:
+> - Laws + architecture → `00_PHILOSOPHY.md` + `01_INVIOLABLE_LAWS.md` + `02_ARCHITECTURE.md`
+> - Server/skill/tool standards → `03_MCP_SERVER_STANDARD.md` + `04_SKILL_STANDARD.md` + `05_TOOL_STANDARD.md`
+> - Pairing Contract + 10 Guardrails (G2 removed v19.1.2) → `07_PAIRING_CONTRACT.md`
+> - Upgrade Playbook (9 phases + Phase 1.5) → `08_UPGRADE_PLAYBOOK.md`
 > - Completion Gate → `v19.0/09_VERIFICATION_PROTOCOL.md`
 > - Upstream sync → `v19.0/13_UPSTREAM_SYNC_PROTOCOL.md`
 >

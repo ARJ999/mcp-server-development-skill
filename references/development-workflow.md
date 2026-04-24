@@ -1,4 +1,4 @@
-> ⚠️ **SUPERSEDED BY v19.1.5** — 2026-04-23. This file is v18.1-era content retained for historical reference. The authoritative v19.1.5 Bible at `https://github.com/ARJ999/MCP-God-Agent-Development-Bible` (branch `main`, flat layout) takes precedence on every rule below. Mapping:
+> ⚠️ **SUPERSEDED BY v19.1.6** — 2026-04-23. This file is v18.1-era content retained for historical reference. The authoritative v19.1.6 Bible at `https://github.com/ARJ999/MCP-God-Agent-Development-Bible` (branch `main`, flat layout) takes precedence on every rule below. Mapping:
 > - Laws + architecture → `00_PHILOSOPHY.md` + `01_INVIOLABLE_LAWS.md` + `02_ARCHITECTURE.md`
 > - Server/skill/tool standards → `03_MCP_SERVER_STANDARD.md` + `04_SKILL_STANDARD.md` + `05_TOOL_STANDARD.md`
 > - Pairing Contract + 10 Guardrails (G2 removed v19.1.2) → `07_PAIRING_CONTRACT.md`

@@ -1,10 +1,10 @@
 ---
 name: mcp-server-development
-description: "Use when developing a new MCP server from scratch, upgrading an existing MCP server, performing a quality audit, or pairing a skill with its MCP. Complete operational reference for the MCP God Agent Development Bible (v19.1.5) — Ten Inviolable Laws, Pairing Contract (12 sections), 10 active Operational Guardrails, 9-Phase Upgrade Playbook with mandatory Phase 1.5 Upstream Capability Sync, Gold Stack pins, 4-Tier v3.1 Architecture, MCP 2025-11-25 spec-compliance (Check 12). Reference pilot: Fivetran (SIGNED, production). Pair-specific artifacts live in each pair's own repo under docs/, not in the Bible."
-version: 3.2.2
+description: "Use when developing a new MCP server from scratch, upgrading an existing MCP server, performing a quality audit, or pairing a skill with its MCP. Complete operational reference for the MCP God Agent Development Bible (v19.1.6) — Ten Inviolable Laws, Pairing Contract (12 sections), 10 active Operational Guardrails, 9-Phase Upgrade Playbook with mandatory Phase 1.5 Upstream Capability Sync, Gold Stack pins, 4-Tier v3.1 Architecture, MCP 2025-11-25 spec-compliance (Check 12). Reference pilot: Fivetran (SIGNED, production). Pair-specific artifacts live in each pair's own repo under docs/, not in the Bible."
+version: 3.2.3
 ---
 
-# MCP Server Development — Bible v19.1.5 Framework
+# MCP Server Development — Bible v19.1.6 Framework
 
 Canonical framework for building, upgrading, and auditing god-grade MCP + paired-skill pairs.
 
@@ -21,7 +21,7 @@ Canonical framework for building, upgrading, and auditing god-grade MCP + paired
 |---|---|
 | **Bible Repository** | [ARJ999/MCP-God-Agent-Development-Bible](https://github.com/ARJ999/MCP-God-Agent-Development-Bible) |
 | **Authoritative branch** | `main` (flat repo layout post-2026-04-22 restructure) |
-| **Framework version** | **v19.1.5** |
+| **Framework version** | **v19.1.6** |
 | **Canonized** | 2026-04-22 |
 | **MCP Spec** | 2025-11-25 |
 | **Python SDK** | `mcp >= 1.27.0, < 2` (v2 alpha BANNED in prod) |
@@ -34,7 +34,7 @@ Every deployed pair reports BOTH scales — do not conflate them:
 
 | Scale | What it tracks | Example |
 |---|---|---|
-| **Framework version** | Bible documentation version | `Bible v19.1.5` |
+| **Framework version** | Bible documentation version | `Bible v19.1.6` |
 | **Server version** | Pair's own app version | `19.1.1` (Fivetran) |
 
 Cascade surfaces per scale:
@@ -133,7 +133,7 @@ Five protocol features, all MUST be implemented per Bible Check 12:
 |---|---|---|---|
 | **12.1** | Structured output (`outputSchema`) | Every data-returning tool declares a Pydantic output model; `dict/Any` banned | `05 § 4.1` |
 | **12.2** | ToolAnnotations | Every tool emits `title` + 4 hints (`readOnlyHint`, `destructiveHint`, `idempotentHint`, `openWorldHint`); icons SHOULD for pairs ≥100 tools | `05 § 4.3` |
-| **12.3** | Task annotations | Every tool matching long-running rubric (≥30s or unbounded) declares `task=True`; **R24 (v19.1.5)**: auto-applied `task=True` is suppressed when docket backend is `memory://` | `05 § 4.5`, § 4.5.1 |
+| **12.3** | Task annotations | Every tool matching long-running rubric (≥30s or unbounded) declares `task=True`; **R24 (v19.1.6)**: auto-applied `task=True` is suppressed when docket backend is `memory://` | `05 § 4.5`, § 4.5.1 |
 | **12.4** | Elicitation registration | If pair has OAuth/consent/secret flows, `FivetranElicitation`-equivalent MUST call `.register(mcp)` | `03 § 6.1` |
 | **12.5** | MCP-Protocol-Version header | Server accepts + advertises `MCP-Protocol-Version: 2025-11-25` | spec |
 
@@ -152,7 +152,7 @@ Five protocol features, all MUST be implemented per Bible Check 12:
 
 Flipping existing tool to `task=True` is **semantic-breaking** — coordinate with agent-side consumers, bump server semver, document in Gotcha Registry.
 
-### Backend-conditional task gating (R24, v19.1.5) — § 4.5.1 — **MUST**
+### Backend-conditional task gating (R24, v19.1.6) — § 4.5.1 — **MUST**
 
 `task=True` is ONLY semantically meaningful when the Docket backend is an
 external dispatcher (`redis://…`, `rediss://…`, or another queue). On the
@@ -508,7 +508,7 @@ If Phase 9 rollback triggers (any regression within 24h):
 | 12.1 | `outputSchema` on every data-returning tool | `tools/list` — every entry has non-empty outputSchema OR exempt with adoption plan |
 | 12.2 | ToolAnnotations — title + 4 hints populated | grep tools/list JSON |
 | 12.3 | Task annotations on long-running tools | grep `@mcp.tool(` for rubric matches |
-| **12.3.1** | **R24 runtime lint** — when `settings.docket.url == "memory://"`, `await mcp.get_tasks()` MUST return `[]` (Bible `09 Check 12.3.1`, v19.1.5, no exemption) | Python snippet in Bible `09`; runs inside pair container |
+| **12.3.1** | **R24 runtime lint** — when `settings.docket.url == "memory://"`, `await mcp.get_tasks()` MUST return `[]` (Bible `09 Check 12.3.1`, v19.1.6, no exemption) | Python snippet in Bible `09`; runs inside pair container |
 | 12.4 | Elicitation `.register(mcp)` if applicable | `grep -E 'elicitation.*\.register\(mcp\)' src/server.py` |
 | 12.5 | `MCP-Protocol-Version: 2025-11-25` accepted + advertised | curl initialize handshake |
 
@@ -516,8 +516,8 @@ If Phase 9 rollback triggers (any regression within 24h):
 ```
 Completion Gate — <pair-slug>
 ✓ 1-12 checks per Bible 09_VERIFICATION_PROTOCOL.md
-Constraint: Bible v19.1.5 | pairing-contract-v1.0 | deployment-tier: <1|2|3>
-Server version: <v>  |  Framework: Bible v19.1.5
+Constraint: Bible v19.1.6 | pairing-contract-v1.0 | deployment-tier: <1|2|3>
+Server version: <v>  |  Framework: Bible v19.1.6
 Upstream-sync: <date> | Adopted: X/Y must | Coverage: N% | Next-sync: <date>
 ```
 
@@ -654,14 +654,14 @@ def is_long_running(name: str) -> bool:
 
 ### Pattern 3 — Unified `install_annotator()` — auto-injects all 3 Check 12 fields + R24 backend gate
 
-Single monkey-patch covers Check 12.1 + 12.2 + 12.3 + R24 (v19.1.5). Invoke ONCE right after `mcp = FastMCP(...)`.
+Single monkey-patch covers Check 12.1 + 12.2 + 12.3 + R24 (v19.1.6). Invoke ONCE right after `mcp = FastMCP(...)`.
 
 ```python
 # core/tool_annotations.py
 def install_annotator(mcp):
     from .output_schemas import classify_output_schema, is_long_running
 
-    # R24 (v19.1.5): task=True is waste on memory:// — no cross-process dispatcher.
+    # R24 (v19.1.6): task=True is waste on memory:// — no cross-process dispatcher.
     # Detect at install time; explicit @mcp.tool(task=True) still wins over this gate.
     try:
         from fastmcp import settings as _fm_settings
@@ -765,7 +765,7 @@ env_integrity:
 
 ---
 
-## FastMCP 3 Critical Patterns (v19.1.5 compliant)
+## FastMCP 3 Critical Patterns (v19.1.6 compliant)
 
 ```python
 # Server init — Platform-Managed (Law 7 Pattern 2) — default for VPS
@@ -817,14 +817,14 @@ def _load_framework_version() -> str:
         fw = data.get("framework_version")
         if fw: return f"Bible-{fw}" if not fw.startswith("Bible-") else fw
     except Exception: pass
-    return "Bible-v19.1.5"
+    return "Bible-v19.1.6"
 FRAMEWORK_VERSION = _load_framework_version()
 
 # Entry point — Law 6 stateless HTTP
 mcp.run(transport="streamable-http", host="0.0.0.0", port=8000, stateless_http=True)
 ```
 
-## Skill Frontmatter (v19.1.5 schema)
+## Skill Frontmatter (v19.1.6 schema)
 
 ```yaml
 ---
@@ -851,7 +851,7 @@ Pair-specific; lives at `<pair-repo>/contract.yaml` (NOT in Bible). Consumed by 
 contract_version: "1.0"
 pair_slug: <slug>
 pair_status: SIGNED
-framework_version: "v19.1.5"     # R13 single source — tagging.py reads this
+framework_version: "v19.1.6"     # R13 single source — tagging.py reads this
 deployment_tier: 1               # R16 tier gating
 
 # § 2 — Tool Inventory Sync
@@ -906,7 +906,7 @@ grep -rn "OAuthProvider" src/ | wc -l | grep -q "^0$" && \            # Law 7 pa
 grep -rn 'on_duplicate="error"' src/ >/dev/null && \                  # fail-fast
 echo "Ten Laws: PASS"
 
-# v19.1.5 additions
+# v19.1.6 additions
 test -f <pair-repo>/docs/pairing-contract.md && echo "Contract: in pair repo"  # Law 8
 ls tests/guardrails/test_g*.py | wc -l | grep -qE "^(10|11)$" && \             # Law 9 — 10 test files (G2 gone)
   echo "Guardrails: tests present"
@@ -918,14 +918,14 @@ curl -fsS -X POST https://<pair>-mcp.arjtech.in/mcp -H 'Content-Type: applicatio
 grep -E 'elicitation.*\.register\(mcp\)' src/server.py                  # 12.4
 
 # Two-scale cascade (R13)
-EXPECTED_SERVER=v1.0.0; EXPECTED_FRAMEWORK=v19.1.5; PAIR=<slug>
+EXPECTED_SERVER=v1.0.0; EXPECTED_FRAMEWORK=v19.1.6; PAIR=<slug>
 bash /root/aj-workspace/scripts/cascade-check.sh $EXPECTED_SERVER $EXPECTED_FRAMEWORK $PAIR
 
 # Post-deploy drift (event-driven)
 DRY_RUN=1 /root/aj-workspace/scripts/drift-check.sh --pair=<slug>
 ```
 
-## Bible Source Reference (v19.1.5 — flat paths on `main`)
+## Bible Source Reference (v19.1.6 — flat paths on `main`)
 
 All paths relative to Bible repo root, branch `main`:
 
@@ -956,7 +956,7 @@ All paths relative to Bible repo root, branch `main`:
 
 **Reference pair**: Fivetran @ [`ARJ999/FiveTran-God-Agent-MCP`](https://github.com/ARJ999/FiveTran-God-Agent-MCP) — SIGNED, 175 tools, production at `fivetran-mcp.arjtech.in`.
 
-## Common Mistakes (v19.1.5)
+## Common Mistakes (v19.1.6)
 
 | Mistake | Fix |
 |---|---|
@@ -994,7 +994,7 @@ All paths relative to Bible repo root, branch `main`:
 - **Completion Gate**: 12 checks in Bible `09 § 1` — ALL must pass (or N/A with rationale) for Contract to SIGN
 - **Decision journal**: Every upgrade records `mcp__sequential-thinking__record_decision` with `tags: mcp-upgrade,<pair>,<outcome>,st-derived` per Tier-1 Directive 5
 - **Vault writeback**: Completion → `vault_submit_knowledge` with pair slug + framework version
-- **Session-learnings**: Post-upgrade append `[UPGRADE] <pair> Bible-v19.1.5 server-v<X>` entry with non-obvious learnings
+- **Session-learnings**: Post-upgrade append `[UPGRADE] <pair> Bible-v19.1.6 server-v<X>` entry with non-obvious learnings
 
 ## Session Operating Rules — zero lapses
 
